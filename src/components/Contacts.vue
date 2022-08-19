@@ -1,25 +1,13 @@
 <template> 
-<div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
-    <div class="relative max-w-4xl mx-auto">
-      <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
-        <defs>
-          <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-          </pattern>
-        </defs>
-        <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
-      </svg>  
-       <h2 class="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Контакты</h2>
-       <div class="flex justify-end ">
+     <div class="mt-12 relative max-w-4xl mx-auto">
+      <div class="flex justify-end ">
         <button v-if="contacts.length" @click="displayModal(true);updateActionName('Добавить')" type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <svg class="-ml-1 mr-2 h-5 w-5" x-description="Heroicon name: solid/plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
                 </svg>
               Добавить
-            </button>
+        </button>
        </div>
-    </div>
-     <div class="mt-12 relative max-w-4xl mx-auto">
           <ul v-if="contacts.length" role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
               <li v-for="contact in contacts" :key="contact.slug" class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
                 <div class="flex-1 flex flex-col p-8">
@@ -79,10 +67,14 @@
             </button>
           </div>
         </div> 
-  </div>
-    </div>
-</div>
-<ContactForm @close="displayModal(false)" v-if="modal" :actionName="actionName" :contact="contact" />
+      </div>
+    </div> 
+    <ContactForm 
+        @close="displayModal(false)" 
+        v-if="modal" 
+        :actionName="actionName" 
+        :contact="contact" 
+    />
 </template> 
 <script>
 import { useStore } from 'vuex'
